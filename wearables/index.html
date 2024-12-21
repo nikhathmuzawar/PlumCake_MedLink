@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Data</title>
+</head>
+<body>
+  <h1>Fitness Data</h1>
+
+  <!-- Section to display latest fitness data -->
+  <div id="fitness-data">
+    <!-- Latest fitness data will be displayed here -->
+  </div>
+
+  <button id="fetch-data">Fetch Fitness Data</button>
+
+  <script>
+    // Function to fetch and display the mock fitness data from Mockoon
+    function fetchFitnessData() {
+      console.log('Fetching fitness data...');
+      
+      fetch('http://localhost:4000/fitness-data')  // Make sure this matches your Mockoon endpoint
+        .then(response => response.json())
+        .then(data => {
+          console.log('Mock data received:', data);
+
+          // Check if data is not empty and has the expected structure
+          if (data && Array.isArray(data) && data.length > 0) {
+            const fitnessData = data[0];  // Select the first object in the array
+
+            // Log the physical activity object to inspect its structure
+            console.log('Physical Activity:', fitnessData.physicalActivity);
+
+            // Assuming physicalActivity is an object with properties like 'type' and 'duration'
+            const physicalActivity = fitnessData.physicalActivity;
+            
+            document.getElementById('fitness-data').innerHTML = `
+              <h3>Latest Fitness Data</h3>
+              <p>Name: ${fitnessData.name}</p>
+              <p>Email: ${fitnessData.email}</p>
+              <p>Phone: ${fitnessData.phone}</p>
+              <p>Blood Pressure: ${fitnessData.bloodPressure.systolic}/${fitnessData.bloodPressure.diastolic}</p>
+              <p>Oxygen Level: ${fitnessData.oxygenLevel}</p>
+              <p>Heart Rate: ${fitnessData.heartRate}</p>
+              <p>Stress Level: ${fitnessData.stressLevel}</p>
+            `;
+          } else {
+            document.getElementById('fitness-data').innerHTML = `<p>No data available</p>`;
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching fitness data:', error);
+          alert('Error fetching data, check the console for details.');
+        });
+    }
+
+    // Add event listener to the button to fetch data
+    document.getElementById('fetch-data').addEventListener('click', fetchFitnessData);
+  </script>
+</body>
+</html>

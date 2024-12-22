@@ -5,6 +5,7 @@ import { ThemeProvider } from './components/contexts/ThemeContexts';
 import Dashboard from './components/dashboard';
 import Patients from './components/Patients';
 import Consultations from './components/Consultations';
+
 import './styles.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/patients" element={<Patients />} />
           <Route path="/consultations" element={<Consultations />} />
+
         </Routes>
       </Router>
     </ThemeProvider>

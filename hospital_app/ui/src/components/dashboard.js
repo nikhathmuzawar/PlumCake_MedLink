@@ -110,12 +110,12 @@ const Dashboard = () => {
               <XAxis dataKey="ward" />
               <YAxis />
               <Tooltip />
-              <Legend />
+              
               <Bar dataKey="occupied" fill="#dc2626" name="Occupied Beds" />
               <Bar dataKey="available" fill="#16a34a" name="Available Beds" />
             </BarChart>
           </div>
-        </div>
+        </div>  
       </div>
     </div>
   );

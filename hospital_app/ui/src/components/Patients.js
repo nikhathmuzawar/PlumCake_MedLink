@@ -1,9 +1,17 @@
 // components/Patients.js
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Patients = () => {
   const [activeTab, setActiveTab] = useState('inpatient');
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate('/details');
+  };
 
   // Sample patient data
   const inpatients = [
@@ -74,7 +82,7 @@ const Patients = () => {
                         <td>{patient.doctor}</td>
                         <td>{patient.diagnosis}</td>
                         <td>
-                          <button className="action-button">View Details</button>
+                          <button className="action-button" onClick={() => handleNavigation()}>View Details</button>
                         </td>
                       </tr>
                     ))}

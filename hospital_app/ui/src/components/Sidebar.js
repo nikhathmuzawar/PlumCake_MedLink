@@ -44,8 +44,6 @@ const Sidebar = () => {
             Consultations
           </button>
           <button className="nav-item">Inventory</button>
-          <button className="nav-item">Bed Management</button>
-          <button className="nav-item">Settings</button>
         </nav>
         <div className="sidebar-footer">
           <ThemeToggle />

@@ -217,12 +217,52 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `,
         reports: `
+            <div class="stats-grid">
+  <div class="stat-card">
+    <h3>Heart Rate</h3>
+    <div class="value">72 BPM</div>
+    <div class="trend">↑ 2% from last check</div>
+  </div>
+  
+  <div class="stat-card">
+    <h3>Blood Pressure</h3>
+    <div class="value">120/80</div>
+    <div class="trend">Normal</div>
+  </div>
+  
+  <div class="stat-card">
+    <h3>Temperature</h3>
+    <div class="value">98.6°F</div>
+    <div class="trend">Normal</div>
+  </div>
+  
+  <div class="stat-card">
+    <h3>Oxygen Level</h3>
+    <div class="value">98%</div>
+    <div class="trend">↑ 1% from last check</div>
+  </div>
+</div>
+
+<div class="chart-container">
+  <h3>Vital Signs History</h3>
+  <canvas id="vitalsChart"></canvas>
+</div>
+
+<div class="appointments">
+  <h3>Upcoming Appointments</h3>
+  <div id="appointmentsList"></div>
+</div>
+        `,
+        prescriptions: `
             <div class="card">
                 <div class="card-header">
-                    <h2>Reports</h2>
+                    <h2>Prescriptions</h2>
                 </div>
                 <div class="card-body">
-                    <p>Medical reports will be displayed here.</p>
+                    <ul>
+                        <li>Amoxicillin 500mg - Twice daily</li>
+                        <li>Vitamin D Supplements - Once daily</li>
+                    </ul>
                 </div>
             </div>
         `,

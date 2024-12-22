@@ -386,17 +386,110 @@ body {
   background-color: #2980b9;
 }
 
-/* Theme Toggle */
+/* Theme Toggle Button Styling */
 .theme-toggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom of the screen */
+  right: 20px; /* Distance from the right of the screen */
+  z-index: 1000; /* Ensure it's above other elements */
 }
 
 .theme-toggle button {
-  background: none;
+  background-color: #00796b;
+  color: white;
   border: none;
-  color: var(--white-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
   font-size: 20px;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle button:hover {
+  background-color: #004d40;
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.theme-toggle button:active {
+  transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Example: Adjust other elements for dark mode */
+.card {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/*dashboard for report */ 
+
+.dashboard-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.stat-card .value {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #2563eb;
+}
+
+.chart-container {
+  background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 400px;
+}
+
+.appointments {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.appointment-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.appointment-item:last-child {
+  border-bottom: none;
+}
+
+canvas {
+  width: 100% !important;
+  height: 300px !important;
 }

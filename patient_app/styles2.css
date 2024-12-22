@@ -7,7 +7,7 @@
   --sidebar-bg-color: #00796b;
   --white-color: #ffffff;
   --gray-color: #f9fafb;
-  --hover-bg-color: #f3f4f6;
+  --hover-bg-color: #3dd2c1;
   --active-bg-color: #eff6ff;
   --hover-shadow-color: rgba(0, 0, 0, 0.1);
   --bg-color: var(--gray-color);
@@ -112,7 +112,7 @@ body {
   justify-content: center;
 }
 
-/* Header */
+/* Update the header styles */
 .header {
   width: 100%;
   background-color: var(--header-bg-color);
@@ -130,54 +130,49 @@ body {
   height: var(--header-height);
 }
 
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  color: var(--white-color);
-}
-
-/* Patient Info */
-.patient-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.patient-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--white-color);
-}
-
-/* Dropdown */
+/* Updated dropdown styles */
 .dropdown {
   position: relative;
+  margin-left: auto; /* This will push the dropdown to the right */
 }
 
 .dropdown-trigger {
   display: flex;
   align-items: center;
+  gap: 10px;
   cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
 }
 
-.arrow-down {
-  margin-left: 5px;
+.dropdown-trigger:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.patient-details {
+  text-align: right;
+}
+
+.patient-details h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.patient-details p {
+  font-size: 14px;
+  margin: 0;
+  opacity: 0.8;
 }
 
 .dropdown-menu {
-  display: none;
   position: absolute;
   right: 0;
-  top: 50px;
+  top: 100%;
   background: var(--white-color);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   padding: 10px 0;
-  z-index: 1001;
+  z-index: 1001; /* Higher than header */
 }
 
 .dropdown.open .dropdown-menu {

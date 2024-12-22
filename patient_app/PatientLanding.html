@@ -163,14 +163,13 @@
 
     <script>
       
-    //Mobile menu toggle
-/*
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-    const contentArea = document.querySelector('.content');
-    */
+   // Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Navigation functionality
+    const navItems = document.querySelectorAll('.nav-item');
+    const contentArea = document.getElementById('contentArea');
 
-    // Define content for each view, including the Overview
+    // Define content for each view
     const viewsContent = {
         overview: `
             <div class="card">
@@ -178,70 +177,27 @@
                     <h2>Overview</h2>
                 </div>
                 <div class="card-body">
-                   <div class="overview-grid">
-    <div class="overview-item">
-        <h3>Patient</h3>
-        <p>
-            <strong>Name:</strong>
-            <span class="view-text">Tanvi</span>
-            <input type="text" value="Tanvi" class="editable-input" />
-        </p>
-        <p>
-            <strong>Email:</strong>
-            <span class="view-text">Tanvi.tan@gmail.com</span>
-            <input type="text" value="Tanvi.tan@gmail.com" class="editable-input" />
-        </p>
-        <p>
-            <strong>DOB:</strong>
-            <span class="view-text">Mar 15, 1990</span>
-            <input type="date" value="1990-03-15" class="editable-input" />
-        </p>
-    </div>
-    <div class="overview-item">
-        <h3>Contact</h3>
-        <p>
-            <strong>Phone:</strong>
-            <span class="view-text">(555) 123-4567</span>
-            <input type="text" value="(555) 123-4567" class="editable-input" />
-        </p>
-        <p>
-            <strong>Address:</strong>
-            <span class="view-text">123 Medical Way</span>
-            <input type="text" value="123 Medical Way" class="editable-input" />
-        </p>
-        <p>
-            <strong>City:</strong>
-            <span class="view-text">Springfield</span>
-            <input type="text" value="Springfield" class="editable-input" />
-        </p>
-        <p>
-            <strong>ZIP:</strong>
-            <span class="view-text">12345</span>
-            <input type="text" value="12345" class="editable-input" />
-        </p>
-    </div>
-    <div class="overview-item">
-        <h3>Medical</h3>
-        <p>
-            <strong>Blood Type:</strong>
-            <span class="view-text">A+</span>
-            <input type="text" value="A+" class="editable-input" />
-        </p>
-        <p>
-            <strong>Allergies:</strong>
-            <span class="view-text">None</span>
-            <input type="text" value="None" class="editable-input" />
-        </p>
-        <p>
-            <strong>Registered:</strong>
-            <span class="view-text">Jan 10, 2024</span>
-            <input type="date" value="2024-01-10" class="editable-input" />
-        </p>
-    </div>
-</div>
-
-
-                    
+                    <div class="overview-grid">
+                        <div class="overview-item">
+                            <h3>Patient</h3>
+                            <p><strong>Name:</strong> <span class="view-text">Tanvi</span><input type="text" value="Tanvi" class="editable-input" /></p>
+                            <p><strong>Email:</strong> <span class="view-text">Tanvi.tan@gmail.com</span><input type="text" value="Tanvi.tan@gmail.com" class="editable-input" /></p>
+                            <p><strong>DOB:</strong> <span class="view-text">Mar 15, 1990</span><input type="date" value="1990-03-15" class="editable-input" /></p>
+                        </div>
+                        <div class="overview-item">
+                            <h3>Contact</h3>
+                            <p><strong>Phone:</strong> <span class="view-text">(555) 123-4567</span><input type="text" value="(555) 123-4567" class="editable-input" /></p>
+                            <p><strong>Address:</strong> <span class="view-text">123 Medical Way</span><input type="text" value="123 Medical Way" class="editable-input" /></p>
+                            <p><strong>City:</strong> <span class="view-text">Springfield</span><input type="text" value="Springfield" class="editable-input" /></p>
+                            <p><strong>ZIP:</strong> <span class="view-text">12345</span><input type="text" value="12345" class="editable-input" /></p>
+                        </div>
+                        <div class="overview-item">
+                            <h3>Medical</h3>
+                            <p><strong>Blood Type:</strong> <span class="view-text">A+</span><input type="text" value="A+" class="editable-input" /></p>
+                            <p><strong>Allergies:</strong> <span class="view-text">None</span><input type="text" value="None" class="editable-input" /></p>
+                            <p><strong>Registered:</strong> <span class="view-text">Jan 10, 2024</span><input type="date" value="2024-01-10" class="editable-input" /></p>
+                        </div>
+                    </div>
                     <button class="edit-btn" id="editButton">Edit</button>
                 </div>
             </div>
@@ -261,41 +217,14 @@
             </div>
         `,
         reports: `
-            <div class="stats-grid">
-  <div class="stat-card">
-    <h3>Heart Rate</h3>
-    <div class="value">72 BPM</div>
-    <div class="trend">↑ 2% from last check</div>
-  </div>
-  
-  <div class="stat-card">
-    <h3>Blood Pressure</h3>
-    <div class="value">120/80</div>
-    <div class="trend">Normal</div>
-  </div>
-  
-  <div class="stat-card">
-    <h3>Temperature</h3>
-    <div class="value">98.6°F</div>
-    <div class="trend">Normal</div>
-  </div>
-  
-  <div class="stat-card">
-    <h3>Oxygen Level</h3>
-    <div class="value">98%</div>
-    <div class="trend">↑ 1% from last check</div>
-  </div>
-</div>
-
-<div class="chart-container">
-  <h3>Vital Signs History</h3>
-  <canvas id="vitalsChart"></canvas>
-</div>
-
-<div class="appointments">
-  <h3>Upcoming Appointments</h3>
-  <div id="appointmentsList"></div>
-</div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Reports</h2>
+                </div>
+                <div class="card-body">
+                    <p>Medical reports will be displayed here.</p>
+                </div>
+            </div>
         `,
         prescriptions: `
             <div class="card">
@@ -333,35 +262,68 @@
         `
     };
 
-    
-
-    // Update content area on navigation click
-    const navItems = document.querySelectorAll('.nav-item');
-
+    // Navigation click handler
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
-
-            // Remove active class from all items
             navItems.forEach(nav => nav.classList.remove('active'));
-
-            // Add active class to clicked item
             item.classList.add('active');
-
-            // Get the view name and update content
             const view = item.getAttribute('data-view');
-            contentArea.innerHTML = viewsContent[view] || '<p>Content not found.</p>';
-
-            // Reinitialize event listeners for "Overview"
-            if (view === 'overview') {
-                initializeOverviewEdit();
+            if (contentArea) {
+                contentArea.innerHTML = viewsContent[view] || '<p>Content not found.</p>';
+                if (view === 'overview') {
+                    initializeOverviewEdit();
+                }
             }
         });
     });
 
-    function redirectToPayments() {
-    window.location.href = "api.html"; // Replace with your actual payments page URL
-}
+    // Dropdown functionality
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownTrigger = document.querySelector('.dropdown-trigger');
+    const logoutButton = document.getElementById('logoutButton');
+
+    if (dropdownTrigger && dropdown) {
+        dropdownTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
+    }
+
+    if (logoutButton) {
+        logoutButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Logging out...');
+            window.location.href = 'signIn.html';
+        });
+    }
+
+    // Initialize overview edit functionality
+    function initializeOverviewEdit() {
+        const editButton = document.getElementById('editButton');
+        const cardBody = document.querySelector('.card-body');
+
+        if (editButton && cardBody) {
+            editButton.addEventListener('click', () => {
+                cardBody.classList.toggle('editing');
+                editButton.textContent = cardBody.classList.contains('editing') ? 'Save' : 'Edit';
+            });
+        }
+    }
+
+    // Initialize the default view (Overview)
+    if (contentArea) {
+        contentArea.innerHTML = viewsContent.overview;
+        initializeOverviewEdit();
+    }
+});
 
     // Function to initialize "Edit" button functionality for Overview
     function initializeOverviewEdit() {
@@ -388,29 +350,33 @@ menuToggle.addEventListener('click', () => {
   sidebar.classList.toggle('active');
   document.querySelector('.main-content').classList.toggle('sidebar-active');
 });
-// Dropdown functionality for the header
-const dropdown = document.querySelector('.dropdown');
-const dropdownTrigger = document.querySelector('.dropdown-trigger');
-const logoutButton = document.getElementById('logoutButton');
 
-dropdownTrigger.addEventListener('click', () => {
+// Update the dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdown = document.querySelector('.dropdown');
+  const dropdownTrigger = document.querySelector('.dropdown-trigger');
+
+  // Toggle dropdown on trigger click
+  dropdownTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
     dropdown.classList.toggle('open');
-});
+  });
 
-// Close the dropdown when clicking outside
-window.addEventListener('click', (e) => {
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
     if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('open');
+      dropdown.classList.remove('open');
     }
-});
+  });
 
-// Logout button functionality
-logoutButton.addEventListener('click', () => {
-    alert('Logging out...');
-    // Redirect to login page
-    window.location.href = 'signIn.html';
+  // Close dropdown when clicking a menu item
+  const dropdownItems = document.querySelectorAll('.dropdown-menu a');
+  dropdownItems.forEach(item => {
+    item.addEventListener('click', () => {
+      dropdown.classList.remove('open');
+    });
+  });
 });
-
 // Function to initialize "Edit" button functionality for Overview
 function initializeOverviewEdit() {
     const editButton = document.getElementById('editButton');

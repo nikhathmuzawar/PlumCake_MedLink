@@ -1,37 +1,58 @@
 // components/Sidebar.js
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
+import MobileMenuButton from './MobileMenueButton';
+import { useState } from 'react';
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    setIsMobileMenuOpen(false);
+  };
 
   return (
-    <div className="sidebar">
-      <div className="logo">MediTrack</div>
-      <nav>
-        <button 
-          className={`nav-item ${location.pathname === '/' ? 'active' : ''}`}
-          onClick={() => navigate('/')}
-        >
-          Dashboard
-        </button>
-        <button 
-          className={`nav-item ${location.pathname === '/patients' ? 'active' : ''}`}
-          onClick={() => navigate('/patients')}
-        >
-          Patients
-        </button>
-        <button 
-          className={`nav-item ${location.pathname === '/consultations' ? 'active' : ''}`}
-          onClick={() => navigate('/consultations')}
-        >
-          Consultations
-        </button>
-        <button className="nav-item">Inventory</button>
-      </nav>
-      <button className="logout-btn">Log Out</button>
-    </div>
+    <>
+      <MobileMenuButton onClick={toggleMobileMenu} isOpen={isMobileMenuOpen} />
+      <div className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
+        <div className="logo">MediTrack</div>
+        <nav>
+          <button 
+            className={`nav-item ${location.pathname === '/' ? 'active' : ''}`}
+            onClick={() => handleNavigation('/')}
+          >
+            Dashboard
+          </button>
+          <button 
+            className={`nav-item ${location.pathname === '/patients' ? 'active' : ''}`}
+            onClick={() => handleNavigation('/patients')}
+          >
+            Patients
+          </button>
+          <button 
+            className={`nav-item ${location.pathname === '/consultations' ? 'active' : ''}`}
+            onClick={() => handleNavigation('/consultations')}
+          >
+            Consultations
+          </button>
+          <button className="nav-item">Inventory</button>
+          <button className="nav-item">Bed Management</button>
+          <button className="nav-item">Settings</button>
+        </nav>
+        <div className="sidebar-footer">
+          <ThemeToggle />
+          <button className="logout-btn">Log Out</button>
+        </div>
+      </div>
+    </>
   );
 };
 

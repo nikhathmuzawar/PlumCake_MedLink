@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Patient Dashboard</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">MedPortal</div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-view="overview">
+                    <i>👤</i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-view="history">
+                    <i>📋</i>
+                    <span>History</span>
+                </a>
+                <a href="#" class="nav-item" data-view="reports">
+                    <i>📊</i>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item" data-view="prescriptions">
+                    <i>💊</i>
+                    <span>Prescriptions</span>
+                </a>
+                <a href="#" class="nav-item" data-view="payments">
+                    <i>💳</i>
+                    <span>Payments</span>
+                </a>
+                <a href="#" class="nav-item" data-view="appointments">
+                    <i>📅</i>
+                    <span>Appointments</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <div class="patient-info">
+                    <div class="patient-avatar"></div>
+                    <div class="patient-details">   
+                        <h2>Tanvi</h2>
+                        <p>Tanvi.tan@gmail.com</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Patient Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-grid">
+                            <div class="info-section">
+                                <h3>Personal Details</h3>
+                                <div class="info-list">
+                                    <div class="info-item">
+                                        <span class="info-label">Date of Birth</span>
+                                        <span>Mar 15, 1990</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Phone</span>
+                                        <span>(555) 123-4567</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Address</span>
+                                        <span>123 Medical Way</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">City</span>
+                                        <span>Springfield</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">ZIP Code</span>
+                                        <span>12345</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-section">
+                                <h3>Medical Details</h3>
+                                <div class="info-list">
+                                    <div class="info-item">
+                                        <span class="info-label">Registration</span>
+                                        <span>Jan 10, 2024</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Blood Type</span>
+                                        <span>A+</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Allergies</span>
+                                        <span>None</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const sidebar = document.getElementById('sidebar');
+  
+      menuToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('active');
+      });
+  
+      // Navigation handling
+      const navItems = document.querySelectorAll('.nav-item');
+      const contentArea = document.querySelector('.content');
+  
+      // Define content for each view
+      const viewsContent = {
+          overview: `
+              <div class="card">
+                  <div class="card-header">
+                      <h2>Overview</h2>
+                  </div>
+                  <div class="card-body">
+                      <p>Welcome to the medical dashboard! Here you can navigate through various patient data.</p>
+                  </div>
+              </div>
+          `,
+          history: `
+              <div class="card">
+                  <div class="card-header">
+                      <h2>History</h2>
+                  </div>
+                  <div class="card-body">
+                      <ul>
+                          <li>Visit on Jan 10, 2024 - General Checkup</li>
+                          <li>Visit on Feb 15, 2024 - Lab Tests</li>
+                          <li>Visit on Mar 05, 2024 - Consultation</li>
+                      </ul>
+                  </div>
+              </div>
+          `,
+          reports: `
+              <div class="card">
+                  <div class="card-header">
+                      <h2>Reports</h2>
+                  </div>
+                  <div class="card-body">
+                      <p>No reports available yet. Please check back later.</p>
+                  </div>
+              </div>
+          `,
+          prescriptions: `
+              <div class="card">
+                  <div class="card-header">
+                      <h2>Prescriptions</h2>
+                  </div>
+                  <div class="card-body">
+                      <ul>
+                          <li>Amoxicillin 500mg - Twice daily</li>
+                          <li>Vitamin D Supplements - Once daily</li>
+                      </ul>
+                  </div>
+              </div>
+          `,
+          payments: `
+              <div class="card">
+                  <div class="card-header">
+                      <h2>Payments</h2>
+                  </div>
+                  <div class="card-body">
+                      <p>Last payment: $150 on Dec 1, 2024</p>
+                  </div>
+              </div>
+          `,
+          appointments: `
+              <div class="card">
+                  <div class="card-header">
+                      <h2>Appointments</h2>
+                  </div>
+                  <div class="card-body">
+                      <p>Upcoming appointment: Jan 5, 2025, 10:00 AM</p>
+                  </div>
+              </div>
+          `
+      };
+  
+      // Update content area on navigation click
+      navItems.forEach(item => {
+          item.addEventListener('click', (e) => {
+              e.preventDefault();
+  
+              // Remove active class from all items
+              navItems.forEach(nav => nav.classList.remove('active'));
+  
+              // Add active class to clicked item
+              item.classList.add('active');
+  
+              // Get the view name and update content
+              const view = item.getAttribute('data-view');
+              contentArea.innerHTML = viewsContent[view] || '<p>Content not found.</p>';
+  
+              // Close mobile menu after navigation
+              if (window.innerWidth <= 768) {
+                  sidebar.classList.remove('active');
+              }
+          });
+      });
+  
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', (e) => {
+          if (
+              window.innerWidth <= 768 &&
+              !sidebar.contains(e.target) &&
+              !menuToggle.contains(e.target) &&
+              sidebar.classList.contains('active')
+          ) {
+              sidebar.classList.remove('active');
+          }
+      });
+  </script>
+  
+</body>
+</html>

@@ -1,6 +1,7 @@
 // Dashboard.js
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import Sidebar from './Sidebar';
 
 const Dashboard = () => {
   // Sample data
@@ -23,22 +24,19 @@ const Dashboard = () => {
     { id: 2, patient: "Robert Wilson", status: "Delivered", time: "10:15 AM" },
   ];
 
+  // New bed occupancy data by ward/department
+  const bedOccupancyData = [
+    { ward: 'General Ward', occupied: 15, available: 5 },
+    { ward: 'ICU', occupied: 8, available: 2 },
+    { ward: 'Pediatric', occupied: 10, available: 10 },
+    { ward: 'Emergency', occupied: 12, available: 3 },
+    { ward: 'Surgery', occupied: 18, available: 7 }
+  ];
+
   return (
     <div className="dashboard">
       {/* Navigation Sidebar */}
-      <div className="sidebar">
-        <div className="logo">MediTrack</div>
-        <nav>
-          <button className="nav-item">Dashboard</button>
-          <button className="nav-item">Patients</button>
-          <button className="nav-item">Consultations</button>
-          <button className="nav-item">Inventory</button>
-          <button className="nav-item">Bed Management</button>
-          <button className="nav-item">Settings</button>
-        </nav>
-        <button className="logout-btn">Log Out</button>
-      </div>
-
+      <Sidebar />
       {/* Main Content */}
       <div className="main-content">
         {/* Header */}
@@ -60,8 +58,8 @@ const Dashboard = () => {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="stock" fill="#3b82f6" />
-              <Bar dataKey="alert" fill="#ef4444" />
+              <Bar dataKey="stock" fill="#3b82f6" name="Current Stock" />
+              <Bar dataKey="alert" fill="#ef4444" name="Alert Level" />
             </BarChart>
           </div>
 
@@ -104,23 +102,20 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Bed Occupancy */}
+          {/* Bed Occupancy Chart */}
           <div className="card">
-            <h2 className="card-title">Bed Occupancy</h2>
-            <div className="bed-grid">
-              {Array.from({length: 12}).map((_, i) => (
-                <div
-                  key={i}
-                  className={`bed-item ${i < 8 ? 'occupied' : 'available'}`}
-                >
-                  <div className="bed-status">
-                    {i < 8 ? 'Occupied' : 'Available'}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <h2 className="card-title">Bed Occupancy by Ward</h2>
+            <BarChart width={500} height={300} data={bedOccupancyData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="ward" />
+              <YAxis />
+              <Tooltip />
+              
+              <Bar dataKey="occupied" fill="#dc2626" name="Occupied Beds" />
+              <Bar dataKey="available" fill="#16a34a" name="Available Beds" />
+            </BarChart>
           </div>
-        </div>
+        </div>  
       </div>
     </div>
   );

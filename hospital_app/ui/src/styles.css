@@ -3,13 +3,14 @@
     display: flex;
     min-height: 100vh;
     background-color: #f0f4f8;
+   
   }
   
   .sidebar {
-    width: 250px;
+    width: 200px;
     background-color: #1e40af;
     color: white;
-    padding: 20px;
+    padding: 16px;
     position: fixed;
     height: 100vh;
     display: flex;
@@ -117,7 +118,111 @@
   .consultation-item, .delivery-item {
     display: flex;
     justify-content: space-between;
-    padding: 12px;
+    padding: 12px;/* Additional styles to add to your existing styles.css */
+
+/* Tab Navigation */
+.tab-navigation {
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #e5e7eb;
+}
+
+.tab-button.active {
+  background-color: #1e40af;
+  color: white;
+}
+
+/* Tables */
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+/* Action Buttons */
+.action-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #3b82f6;
+  color: white;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #2563eb;
+}
+
+/* Doctor Cards */
+.doctors-list {
+  width: 250px;
+  padding-right: 20px;
+}
+
+.doctor-card {
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: #f3f4f6;
+  cursor: pointer;
+}
+
+.doctor-card:hover {
+  background-color: #e5e7eb;
+}
+
+.doctor-card.selected {
+  background-color: #1e40af;
+  color: white;
+}
+
+.doctor-card h3 {
+  margin: 0 0 5px 0;
+}
+
+.doctor-card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Consultations Layout */
+.consultations-container {
+  display: flex;
+  gap: 20px;
+}
+
+.appointments-view {
+  flex: 1;
+}
+
+
+
+/* Active Navigation Item */
+.nav-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
     background-color: #f8fafc;
     border-radius: 4px;
   }
@@ -163,3 +268,356 @@
     background-color: #dcfce7;
     color: #16a34a;
   }
+  /* Additional styles to add to your existing styles.css */
+
+/* Tab Navigation */
+.tab-navigation {
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #e5e7eb;
+}
+
+.tab-button.active {
+  background-color: #1e40af;
+  color: white;
+}
+
+/* Tables */
+.table-container {
+  overflow-x: auto;
+}
+
+
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+/* Action Buttons */
+.action-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #3b82f6;
+  color: white;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #2563eb;
+}
+
+/* Doctor Cards */
+.doctors-list {
+  width: 250px;
+  padding-right: 20px;
+}
+
+.doctor-card {
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: #999faa;
+  cursor: pointer;
+}
+
+.doctor-card:hover {
+  background-color: #e5e7eb;
+}
+
+.doctor-card.selected {
+  background-color: #1e40af;
+  color: white;
+}
+
+.doctor-card h3 {
+  margin: 0 0 5px 0;
+}
+
+.doctor-card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Consultations Layout */
+.consultations-container {
+  display: flex;
+  gap: 20px;
+}
+
+.appointments-view {
+  flex: 1;
+}
+
+.no-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+}
+
+/* Active Navigation Item */
+.nav-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.sidebar {
+  width: 200px;
+  background-color: #1e40af;
+  color: white;
+  padding: 16px;
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.nav-item {
+  padding: 8px 12px;
+  margin: 2px 0;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Adjust main content margin and add padding */
+.main-content {
+  flex: 1;
+  margin-left: 200px; /* Match sidebar width */
+  padding: 32px 40px; /* Increased padding (top/bottom: 32px, left/right: 40px) */
+}
+
+/* Add padding to specific content sections */
+.consultations-container {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  padding-left: 16px; /* Add padding to the left of the consultations content */
+}
+
+/* Adjust other content containers */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px 0; /* Add vertical padding */
+}
+
+/* Add padding to section headers */
+.header, h1, h2 {
+  padding: 0 16px; /* Add horizontal padding to headers */
+}
+
+/* styles.css */
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: #f0f4f8;
+  --card-bg: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --border-color: #e5e7eb;
+  --sidebar-bg: #1e40af;
+  --sidebar-text: #ffffff;
+  --hover-bg: rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+  --primary-bg: #1a1a1a;
+  --secondary-bg: #2d2d2d;
+  --card-bg: #333333;
+  --text-primary: #f7f1f1;
+  --text-secondary: #979191;
+  --border-color: #404040;
+  --sidebar-bg: #0f172a;
+  --sidebar-text: #ffffff;
+  --hover-bg: rgba(255, 255, 255, 0.637);
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--secondary-bg);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 150px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 20px;
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(194, 184, 184, 0.89);
+  margin-bottom: 20px;
+}
+
+
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  padding: 8px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background-color: var(--hover-bg);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .consultations-container {
+    flex-direction: column;
+  }
+  
+  .doctors-list {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .search-input {
+    width: 100%;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+}
+
+/* Charts Responsive Design */
+.recharts-wrapper {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.recharts-surface {
+  width: 100% !important;
+  height: auto !important;
+}

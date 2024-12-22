@@ -20,7 +20,8 @@
             cursor: pointer;
         }
     </style>
-    
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
   
 </head>
 <body>
@@ -160,6 +161,16 @@
             </div>
         </div>
     </div>
+    
+    <div class="theme-toggle">
+      <button id="themeToggle">🌙</button>
+    </div>
+    
+   
+
+    <div class="theme-toggle">
+        <button id="themeToggle">🌙</button>
+      </div>   
 
     <div class="theme-toggle">
         <button id="themeToggle">🌙</button>
@@ -221,36 +232,39 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `,
         reports: `
-            <div class="stats-grid">
-  <div class="stat-card">
-    <h3>Heart Rate</h3>
-    <div class="value">72 BPM</div>
-    <div class="trend">↑ 2% from last check</div>
-  </div>
-  
-  <div class="stat-card">
-    <h3>Blood Pressure</h3>
-    <div class="value">120/80</div>
-    <div class="trend">Normal</div>
-  </div>
-  
-  <div class="stat-card">
-    <h3>Temperature</h3>
-    <div class="value">98.6°F</div>
-    <div class="trend">Normal</div>
-  </div>
-  
-  <div class="stat-card">
-    <h3>Oxygen Level</h3>
-    <div class="value">98%</div>
-    <div class="trend">↑ 1% from last check</div>
-  </div>
-</div>
+             <div class="dashboard-container">
+    <h2>Patient Health Dashboard</h2>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Heart Rate</h3>
+        <div class="value">72 BPM</div>
+        <div class="trend">↑ 2% from last check</div>
+      </div>
+      
+      <div class="stat-card">
+        <h3>Blood Pressure</h3>
+        <div class="value">120/80</div>
+        <div class="trend">Normal</div>
+      </div>
+      
+      <div class="stat-card">
+        <h3>Temperature</h3>
+        <div class="value">98.6°F</div>
+        <div class="trend">Normal</div>
+      </div>
+      
+      <div class="stat-card">
+        <h3>Oxygen Level</h3>
+        <div class="value">98%</div>
+        <div class="trend">↑ 1% from last check</div>
+      </div>
+    </div>
 
-<div class="chart-container">
-  <h3>Vital Signs History</h3>
-  <canvas id="vitalsChart"></canvas>
-</div>
+    <div class="chart-container">
+      <h3>Vital Signs History</h3>
+      <canvas id="vitalsChart"></canvas>
+    </div>
 
 <div class="appointments">
   <h3>Upcoming Appointments</h3>
@@ -350,10 +364,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize the default view (Overview)
-    if (contentArea) {
-        contentArea.innerHTML = viewsContent.overview;
-        initializeOverviewEdit();
-    }
+   // if (contentArea) {
+   //     contentArea.innerHTML = viewsContent.overview;
+     //   initializeOverviewEdit();
+    //}
 });
 
     // Function to initialize "Edit" button functionality for Overview
@@ -370,8 +384,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize the default view (Overview)
-    contentArea.innerHTML = viewsContent.overview;
-    initializeOverviewEdit();
+    //contentArea.innerHTML = viewsContent.overview;
+    //initializeOverviewEdit();
 
     // Toggle Sidebar
     const menuToggle = document.getElementById('menuToggle');
@@ -426,53 +440,93 @@ initializeOverviewEdit();
     
 </script>
 <!-- At the end of your body tag, before your closing </body> -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  // Chart initialization
-const vitalsData = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-  datasets: [{
-    label: 'Heart Rate',
-    data: [72, 75, 71, 73, 72],
-    borderColor: '#2563eb',
-    tension: 0.4
-  }]
-};
 
-const ctx = document.getElementById('vitalsChart').getContext('2d');
-new Chart(ctx, {
-  type: 'line',
-  data: vitalsData,
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: false
-      }
-    }
-  }
+<script>
+
+// Light/Dark Mode Toggle
+const themeToggle = document.getElementById('themeToggle');
+
+// Check if a mode is already saved in localStorage
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    document.body.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+}
+
+// Toggle the theme on button click
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.body.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+    // Update the theme and save it to localStorage
+    document.body.setAttribute('data-theme', newTheme);
+    themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('theme', newTheme);
 });
 
-// Appointments data
-const appointments = [
-  {
-    doctor: 'Dr. Smith',
-    type: 'Regular Checkup',
-    date: '2024-12-24',
-    time: '10:00 AM'
-  },
-  {
-    doctor: 'Dr. Johnson',
-    type: 'Lab Test',
-    date: '2024-12-26',
-    time: '2:30 PM'
-  }
-];
+// Ensure button placement respects fixed positioning
+window.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.querySelector('.theme-toggle');
+    if (!toggleButton) {
+        console.warn('Theme toggle button not found. Please check the HTML structure.');
+    }
+});
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+    // Wait until everything is loaded
+    window.onload = function() {
+        // Get the canvas element
+        const canvas = document.getElementById('vitalsChart');
+        console.log("hello")
+        
+        if (!canvas) {
+            console.error('Could not find canvas element');
+            return;
+        }
+
+        // Create the chart
+        new Chart(canvas, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Heart Rate',
+                    data: [72, 75, 71, 73, 72],
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    };
+
+    // Then your appointments code
+    const appointments = [
+        {
+            doctor: 'Dr. Smith',
+            type: 'Regular Checkup',
+            date: '2024-12-24',
+            time: '10:00 AM'
+        },
+        {
+            doctor: 'Dr. Johnson',
+            type: 'Lab Test',
+            date: '2024-12-26',
+            time: '2:30 PM'
+        }
+    ];
 
 // Render appointments
 const appointmentsList = document.getElementById('appointmentsList');

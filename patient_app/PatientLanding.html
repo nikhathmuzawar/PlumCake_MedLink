@@ -307,6 +307,12 @@ document.addEventListener('DOMContentLoaded', function() {
         `
     };
 
+    //payment redirect
+    function redirectToPayments() {
+    window.location.href = "api.html"; // Replace with your actual payments page URL
+}
+
+
     // Navigation click handler
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {

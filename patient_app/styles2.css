@@ -10,6 +10,22 @@
   --hover-bg-color: #f3f4f6;
   --active-bg-color: #eff6ff;
   --hover-shadow-color: rgba(0, 0, 0, 0.1);
+  --bg-color: var(--gray-color);
+  --text-color: #000000;
+  --card-bg-color: var(--white-color);
+  --header-bg-color: var(--primary-color);
+  --button-bg-color: #4caf50;
+  --button-text-color: var(--white-color);
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --card-bg-color: #1e1e1e;
+  --header-bg-color: #263238;
+  --sidebar-bg-color: #37474f;
+  --button-bg-color: #3e8e41;
+  --button-text-color: var(--white-color);
 }
 
 * {
@@ -20,7 +36,8 @@
 }
 
 body {
-  background-color: var(--gray-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 /* Layout */
@@ -37,9 +54,9 @@ body {
   color: var(--white-color);
   position: fixed;
   height: 100%;
-  padding-top: calc(var(--header-height) + 20px); /* Add padding for header */
+  padding-top: calc(var(--header-height) + 20px);
   transition: transform 0.3s ease;
-  z-index: 100; /* Lower than header */
+  z-index: 100;
   left: 0;
   top: 0;
 }
@@ -81,9 +98,9 @@ body {
   margin-left: var(--sidebar-width);
   min-height: 100vh;
   padding-top: var(--header-height);
-  background-color: var(--gray-color);
+  background-color: var(--bg-color);
   position: relative;
-  z-index: 1; /* Lower than sidebar and header */
+  z-index: 1;
 }
 
 .content {
@@ -98,14 +115,14 @@ body {
 /* Header */
 .header {
   width: 100%;
-  background-color: var(--primary-color);
+  background-color: var(--header-bg-color);
   color: var(--white-color);
   padding: 10px 20px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* Highest z-index */
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -160,7 +177,7 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   padding: 10px 0;
-  z-index: 1001; /* Higher than header */
+  z-index: 1001;
 }
 
 .dropdown.open .dropdown-menu {
@@ -182,7 +199,7 @@ body {
 
 /* Card Component */
 .card {
-  background-color: var(--white-color);
+  background-color: var(--card-bg-color);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   border-radius: 10px;
@@ -356,4 +373,35 @@ body {
   justify-content: space-between;
   padding: 15px 0;
   border-bottom: 1px solid #eee;
+}
+
+.payment-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.payment-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.theme-toggle button {
+  background: none;
+  border: none;
+  color: var(--white-color);
+  font-size: 20px;
+  cursor: pointer;
 }

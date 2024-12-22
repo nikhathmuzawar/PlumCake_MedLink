@@ -20,10 +20,6 @@
             cursor: pointer;
         }
     </style>
-    <div class="theme-toggle">
-      <button id="themeToggle">🌙</button>
-  </div>
-  
 </head>
 <body>
     <div class="dashboard">
@@ -365,6 +361,7 @@
     window.location.href = "api.html"; // Replace with your actual payments page URL
 }
 
+
     // Function to initialize "Edit" button functionality for Overview
     function initializeOverviewEdit() {
         const editButton = document.getElementById('editButton');
@@ -496,28 +493,6 @@ appointments.forEach(appointment => {
   `;
   appointmentsList.appendChild(appointmentEl);
 });
-
-// Light/Dark Mode Toggle
-const themeToggle = document.getElementById('themeToggle');
-
-// Check if a mode is already saved in localStorage
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-    document.body.setAttribute('data-theme', savedTheme);
-    themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-}
-
-// Toggle the theme on button click
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.body.getAttribute('data-theme') || 'light';
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-    // Update the theme and save it to localStorage
-    document.body.setAttribute('data-theme', newTheme);
-    themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('theme', newTheme);
-});
-
 </script>
 
 </body>

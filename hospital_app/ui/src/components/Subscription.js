@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Sidebar from './Sidebar';
+
+
 
 const SubscriptionPlans = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -9,7 +12,8 @@ const SubscriptionPlans = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 text-gray-900">
-      <div className="container mx-auto p-8">
+        <Sidebar />
+      <div className="main-content">
         <h1 className="text-4xl font-extrabold text-center mb-12 text-blue-600">
           Choose Your Plan
         </h1>

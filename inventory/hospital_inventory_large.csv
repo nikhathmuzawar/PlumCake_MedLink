@@ -1,0 +1,61 @@
+Category,Item_Name,Current_Stock,Lead_Time,Safety_Stock,Daily_Use
+Pain_Killers,Paracetamol,233,14,11,9
+Pain_Killers,Ibuprofen,337,1,26,12
+Pain_Killers,Aspirin,462,5,10,12
+Pain_Killers,Codeine,142,11,29,18
+Pain_Killers,Tramadol,406,14,18,19
+Pain_Killers,Diclofenac,336,6,24,5
+Pain_Killers,Naproxen,365,5,46,8
+Pain_Killers,Ketorolac,389,8,18,2
+Pain_Killers,Celecoxib,176,14,25,7
+Pain_Killers,Etodolac,127,9,18,18
+Pain_Killers,Indomethacin,48,5,32,18
+Pain_Killers,Piroxicam,355,10,37,11
+Pain_Killers,Meloxicam,394,11,23,5
+Pain_Killers,Acetaminophen,374,3,44,5
+Pain_Killers,Meperidine,370,12,41,12
+AntiBiotics,Amoxicillin,30,14,14,20
+AntiBiotics,Ciprofloxacin,270,6,23,3
+AntiBiotics,Doxycycline,464,10,46,18
+AntiBiotics,Azithromycin,178,9,49,5
+AntiBiotics,Clindamycin,431,8,12,3
+AntiBiotics,Levofloxacin,14,12,24,4
+AntiBiotics,Metronidazole,170,5,46,2
+AntiBiotics,Erythromycin,463,11,24,17
+AntiBiotics,Ceftriaxone,30,12,19,8
+AntiBiotics,Vancomycin,268,3,36,7
+AntiBiotics,Gentamicin,141,12,28,12
+AntiBiotics,Tetracycline,129,8,39,8
+AntiBiotics,Cephalexin,380,12,46,9
+AntiBiotics,Rifampin,351,3,15,13
+AntiBiotics,Streptomycin,454,6,15,7
+Medical_Equipment,Stethoscope,486,1,25,7
+Medical_Equipment,Syringes,139,6,37,12
+Medical_Equipment,IV Drip,466,1,23,5
+Medical_Equipment,Glucometer,87,3,49,20
+Medical_Equipment,Oximeter,269,8,30,20
+Medical_Equipment,BP Monitor,398,14,11,7
+Medical_Equipment,Thermometer,291,12,11,15
+Medical_Equipment,Defibrillator,396,10,34,13
+Medical_Equipment,ECG Machine,153,1,15,3
+Medical_Equipment,Surgical Gloves,433,3,16,20
+Medical_Equipment,Face Masks,290,14,40,5
+Medical_Equipment,Scalpel,293,6,49,15
+Medical_Equipment,Forceps,462,14,32,8
+Medical_Equipment,Suture Needles,16,4,39,17
+Medical_Equipment,Otoscope,344,14,42,12
+Hospitality_Equipment,Hospital Beds,89,6,37,15
+Hospitality_Equipment,Wheelchairs,99,14,39,6
+Hospitality_Equipment,IV Stands,160,8,27,8
+Hospitality_Equipment,Bedside Tables,420,7,29,12
+Hospitality_Equipment,Mattresses,227,6,45,15
+Hospitality_Equipment,Pillows,492,13,20,5
+Hospitality_Equipment,Blankets,59,10,12,3
+Hospitality_Equipment,Overbed Tables,374,11,41,19
+Hospitality_Equipment,Food Trays,381,7,36,20
+Hospitality_Equipment,Patient Gowns,204,4,35,16
+Hospitality_Equipment,Bed Rails,134,1,28,12
+Hospitality_Equipment,Privacy Curtains,33,14,35,4
+Hospitality_Equipment,Bedpans,269,8,37,4
+Hospitality_Equipment,Thermal Blankets,170,13,17,5
+Hospitality_Equipment,Commode Chairs,210,2,42,20

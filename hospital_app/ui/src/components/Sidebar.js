@@ -43,7 +43,10 @@ const Sidebar = () => {
           >
             Consultations
           </button>
-          <button className="nav-item">Inventory</button>
+          <button className={`nav-item ${location.pathname === '/inventory' ? 'active' : ''}`}
+            onClick={() => handleNavigation('/inventory')}>Inventory</button>
+          <button className={`nav-item ${location.pathname === '/sub' ? 'active' : ''}`}
+            onClick={() => handleNavigation('/sub')}>Subscription</button>
         </nav>
         <div className="sidebar-footer">
           <ThemeToggle />

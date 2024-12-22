@@ -28,7 +28,8 @@ const Sidebar = () => {
         >
           Consultations
         </button>
-        <button className="nav-item">Inventory</button>
+        <button clclassName={`nav-item ${location.pathname === '/inventory' ? 'active' : ''}`}
+          onClick={() => navigate('/inventory')}>Inventory</button>
         <button className="nav-item">Bed Management</button>
         <button className="nav-item">Settings</button>
       </nav>

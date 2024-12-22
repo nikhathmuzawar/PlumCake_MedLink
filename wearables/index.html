@@ -1,94 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fitness Data</title>
-  <style>
-    .fitness-card {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    .metric {
-      margin: 10px 0;
-      padding: 5px;
-      background: #f5f5f5;
-      border-radius: 4px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f6fa;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            padding: 10px 0;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .nav-items {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 10px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #34495e;
+        }
+
+        .nav-link.active {
+            background-color: #3498db;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Subscription page styles */
+        .subscription-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .plan-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            background: white;
+            transition: transform 0.2s;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .plan-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .selected-plan {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+
+        /* Fitness data styles */
+        .fitness-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .metric {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .metric-label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .metric-value {
+            color: #3498db;
+        }
+
+        #gpay-container {
+            max-width: 300px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .page-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+    </style>
 </head>
 <body>
-  <h1 style="text-align: center;">Fitness Data</h1>
+    <div class="layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                Fitness Pro
+            </div>
+            <ul class="nav-items">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-page="subscription">Subscription</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="fitness-data">Fitness Data</a>
+                </li>
+            </ul>
+        </div>
 
-  <div id="fitness-data" class="fitness-card">
-    <!-- Latest fitness data will be displayed here -->
-  </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Subscription Page -->
+            <div id="subscription" class="page active">
+                <h1 class="page-title">Choose Your Plan</h1>
+                <div class="subscription-plans">
+                    <div class="plan-card" onclick="selectPlan('basic', 9999.99)">
+                        <h3>Basic Plan</h3>
+                        <div class="plan-price">₹9999.99/month</div>
+                        <ul class="plan-features">
+                            <li>Basic fitness metrics</li>
+                            <li>Patient Management</li>
+                            <li>Medicine Delivery</li>
+                        </ul>
+                    </div>
 
-  <div style="text-align: center;">
-    <button id="fetch-data">Fetch Fitness Data</button>
-  </div>
 
-  <script>
-    function fetchFitnessData() {
-      console.log('Fetching fitness data...');
-      
-      fetch('http://localhost:4000/fitness-data')
-        .then(response => response.json())
+                    <div class="plan-card" onclick="selectPlan('premium', 14999.99)">
+                        <h3>Premium Plan</h3>
+                        <div class="plan-price">₹14999.99/month</div>
+                        <ul class="plan-features">
+                            <li>All Pro features</li>
+                            <li>Patient Management</li>
+                            <li>Medicine Delivery</li>
+                            <li>Inventory Management</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="gpay-container"></div>
+            </div>
+
+            <!-- Fitness Data Page -->
+            <div id="fitness-data" class="page">
+                <h1 class="page-title">Your Fitness Data</h1>
+                <button onclick="fetchFitnessData()" class="fetch-button">Refresh Data</button>
+                <div id="fitness-metrics" class="fitness-card">
+                    <!-- Fitness data will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                
+                // Update active link
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show selected page
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                document.getElementById(pageId).classList.add('active');
+            });
+        });
+
+        // Google Pay Integration
+        let selectedPlan = null;
+        let selectedPrice = null;
+        let paymentsClient = null;
+
+        const merchantInfo = {
+            merchantId: '12345678901234567890',
+            merchantName: 'Example Merchant',
+        };
+
+        const baseGooglePayRequest = {
+            apiVersion: 2,
+            apiVersionMinor: 0,
+            allowedPaymentMethods: [
+                {
+                    type: 'CARD',
+                    parameters: {
+                        allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+                        allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
+                    },
+                    tokenizationSpecification: {
+                        type: 'PAYMENT_GATEWAY',
+                        parameters: {
+                            gateway: 'example',
+                            gatewayMerchantId: 'exampleGatewayMerchantId',
+                        },
+                    },
+                },
+            ],
+            merchantInfo,
+        };
+
+        Object.freeze(baseGooglePayRequest);
+
+        function getGooglePaymentsClient() {
+            if (paymentsClient === null) {
+                paymentsClient = new google.payments.api.PaymentsClient({
+                    environment: 'TEST',
+                    merchantInfo,
+                });
+            }
+            return paymentsClient;
+        }
+
+        function onGooglePayLoaded() {
+            const req = JSON.parse(JSON.stringify(baseGooglePayRequest));
+            getGooglePaymentsClient()
+                .isReadyToPay(req)
+                .then(function(res) {
+                    if (res.result) {
+                        renderGooglePayButton();
+                    }
+                })
+                .catch(console.error);
+        }
+
+        function renderGooglePayButton() {
+            const button = getGooglePaymentsClient().createButton({
+                onClick: onGooglePaymentButtonClicked,
+                buttonColor: 'black',
+                buttonType: 'subscribe'
+            });
+            document.getElementById('gpay-container').appendChild(button);
+        }
+
+        function selectPlan(plan, price) {
+            selectedPlan = plan;
+            selectedPrice = price;
+            
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('selected-plan');
+            });
+            
+            event.currentTarget.classList.add('selected-plan');
+        }
+
+        function onGooglePaymentButtonClicked() {
+            if (!selectedPlan) {
+                alert('Please select a subscription plan first');
+                return;
+            }
+
+            const paymentDataRequest = {
+                ...JSON.parse(JSON.stringify(baseGooglePayRequest)),
+                transactionInfo: {
+                    countryCode: 'US',
+                    currencyCode: 'USD',
+                    totalPriceStatus: 'FINAL',
+                    totalPrice: selectedPrice.toFixed(2),
+                }
+            };
+
+            getGooglePaymentsClient()
+                .loadPaymentData(paymentDataRequest)
+                .then(processPayment)
+                .catch(console.error);
+        }
+
+        function processPayment(paymentData) {
+            console.log('Payment Data:', paymentData);
+            alert(`Successfully subscribed to ${selectedPlan} plan!`);
+        }
+
+       // Fitness Data Functions
+function fetchFitnessData() {
+    fetch('http://localhost:4000/fitness-data')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
-          console.log('Mock data received:', data);
-
-          if (data && Array.isArray(data) && data.length > 0) {
-            const fitnessData = data[0];
-
-            document.getElementById('fitness-data').innerHTML = `
-              <h3>Latest Fitness Data</h3>
-              <div class="metric">
-                <strong>Name:</strong> ${fitnessData.name || 'N/A'}
-              </div>
-              <div class="metric">
-                <strong>Email:</strong> ${fitnessData.email || 'N/A'}
-              </div>
-              <div class="metric">
-                <strong>Phone:</strong> ${fitnessData.phone || 'N/A'}
-              </div>
-              <div class="metric">
-                <strong>Blood Pressure:</strong> ${fitnessData.bloodPressure.systolic}/${fitnessData.bloodPressure.diastolic}
-              </div>
-              <div class="metric">
-                <strong>Oxygen Level:</strong> ${fitnessData.oxygenLevel}%
-              </div>
-              <div class="metric">
-                <strong>Heart Rate:</strong> ${fitnessData.heartRate} bpm
-              </div>
-              <div class="metric">
-                <strong>Physical Activity:</strong> ${fitnessData.physicalActivity.activity} for ${fitnessData.physicalActivity.duration}
-              </div>
-              <div class="metric">
-                <strong>Steps:</strong> ${fitnessData.physicalActivity.steps.toLocaleString()}
-              </div>
-              <div class="metric">
-                <strong>Calories Burned:</strong> ${fitnessData.physicalActivity.caloriesBurned} kcal
-              </div>
-              <div class="metric">
-                <strong>Stress Level:</strong> ${fitnessData.stressLevel}/10
-              </div>
-            `;
-          } else {
-            document.getElementById('fitness-data').innerHTML = `<p>No data available</p>`;
-          }
+            if (data && Array.isArray(data) && data.length > 0) {
+                updateFitnessDisplay(data[0]);
+            } else {
+                throw new Error('No fitness data available');
+            }
         })
         .catch(error => {
-          console.error('Error fetching fitness data:', error);
-          document.getElementById('fitness-data').innerHTML = `
-            <p style="color: red;">Error fetching data. Please try again.</p>
-          `;
+            console.error('Error:', error);
+            document.getElementById('fitness-metrics').innerHTML = 
+                `<p style="color: red;">Error: ${error.message}. Please try again.</p>`;
         });
-    }
+}
 
-    document.getElementById('fetch-data').addEventListener('click', fetchFitnessData);
-  </script>
+function updateFitnessDisplay(data) {
+    try {
+        document.getElementById('fitness-metrics').innerHTML = `
+            <div class="metric">
+                <strong>Phone:</strong> ${data.phone || 'N/A'}
+            </div>
+            <div class="metric">
+                <span class="metric-label">Blood Pressure</span>
+                <span class="metric-value">${data.bloodPressure?.systolic || 'N/A'}/${data.bloodPressure?.diastolic || 'N/A'}</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Heart Rate</span>
+                <span class="metric-value">${data.heartRate || 'N/A'} ${data.heartRate ? 'bpm' : ''}</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Oxygen Level</span>
+                <span class="metric-value">${data.oxygenLevel || 'N/A'}${data.oxygenLevel ? '%' : ''}</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Physical Activity</span>
+                <span class="metric-value">${data.physicalActivity?.activity || 'N/A'} ${data.physicalActivity?.duration ? `for ${data.physicalActivity.duration}` : ''}</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Stress Level</span>
+                <span class="metric-value">${data.stressLevel || 'N/A'}${data.stressLevel ? '/10' : ''}</span>
+            </div>
+        `;
+    } catch (error) {
+        console.error('Error updating display:', error);
+        document.getElementById('fitness-metrics').innerHTML = 
+            '<p style="color: red;">Error displaying fitness data. Please try again.</p>';
+    }
+} 
+    </script>
+
+    <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
 </body>
 </html>

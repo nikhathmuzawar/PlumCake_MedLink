@@ -1,1 +1,312 @@
-frontend code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Patient Dashboard</title>
+    <link rel="stylesheet" href="styles2.css">        
+</head>
+<body>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">MedPortal</div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-view="overview">
+                    <i>👤</i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-view="history">
+                    <i>📋</i>
+                    <span>History</span>
+                </a>
+                <a href="#" class="nav-item" data-view="reports">
+                    <i>📊</i>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item" data-view="prescriptions">
+                    <i>💊</i>
+                    <span>Prescriptions</span>
+                </a>
+                <a href="#" class="nav-item" data-view="payments">
+                    <i>💳</i>
+                    <span>Payments</span>
+                </a>
+                <a href="#" class="nav-item" data-view="appointments">
+                    <i>📅</i>
+                    <span>Appointments</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">MedPortal</div>
+            <div class="patient-info">
+                <div class="patient-avatar"></div>
+                <div class="dropdown">
+                    <div class="dropdown-trigger">
+                        <div class="patient-details">
+                            <h2>Tanvi</h2>
+                            <p>Tanvi.tan@gmail.com</p>
+                        </div>
+                        <i>▼</i>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Notifications</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#" id="logoutButton">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content" id="contentArea">
+            <!-- Default content is the Overview -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Overview</h2>
+                </div>
+                <div class="card-body">
+                    <div class="overview-grid">
+                        <div class="overview-item">
+                            <h3>Patient</h3>
+                            <p>
+                                <strong>Name:</strong>
+                                <span class="view-text">Tanvi</span>
+                                <input type="text" value="Tanvi" class="editable-input" />
+                            </p>
+                            <p>
+                                <strong>Email:</strong>
+                                <span class="view-text">Tanvi.tan@gmail.com</span>
+                                <input type="text" value="Tanvi.tan@gmail.com" class="editable-input" />
+                            </p>
+                            <p>
+                                <strong>DOB:</strong>
+                                <span class="view-text">Mar 15, 1990</span>
+                                <input type="date" value="1990-03-15" class="editable-input" />
+                            </p>
+                        </div>
+                        <div class="overview-item">
+                            <h3>Contact</h3>
+                            <p>
+                                <strong>Phone:</strong>
+                                <span class="view-text">(555) 123-4567</span>
+                                <input type="text" value="(555) 123-4567" class="editable-input" />
+                            </p>
+                            <p>
+                                <strong>Address:</strong>
+                                <span class="view-text">123 Medical Way</span>
+                                <input type="text" value="123 Medical Way" class="editable-input" />
+                            </p>
+                            <p>
+                                <strong>City:</strong>
+                                <span class="view-text">Springfield</span>
+                                <input type="text" value="Springfield" class="editable-input" />
+                            </p>
+                            <p>
+                                <strong>ZIP:</strong>
+                                <span class="view-text">12345</span>
+                                <input type="text" value="12345" class="editable-input" />
+                            </p>
+                        </div>
+                        <div class="overview-item">
+                            <h3>Medical</h3>
+                            <p>
+                                <strong>Blood Type:</strong>
+                                <span class="view-text">A+</span>
+                                <input type="text" value="A+" class="editable-input" />
+                            </p>
+                            <p>
+                                <strong>Allergies:</strong>
+                                <span class="view-text">None</span>
+                                <input type="text" value="None" class="editable-input" />
+                            </p>
+                            <p>
+                                <strong>Registered:</strong>
+                                <span class="view-text">Jan 10, 2024</span>
+                                <input type="date" value="2024-01-10" class="editable-input" />
+                            </p>
+                        </div>
+                    </div>
+                    <button class="edit-btn" id="editButton">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // Dropdown functionality
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownTrigger = document.querySelector('.dropdown-trigger');
+        const logoutButton = document.getElementById('logoutButton');
+
+        dropdownTrigger.addEventListener('click', () => {
+            dropdown.classList.toggle('open');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
+
+        logoutButton.addEventListener('click', () => {
+            alert('Logging out...');
+            window.location.href = 'signIn.html';
+        });
+
+        // Initialize Edit functionality
+        const editButton = document.getElementById('editButton');
+        const cardBody = document.querySelector('.card-body');
+
+        if (editButton) {
+            editButton.addEventListener('click', () => {
+                cardBody.classList.toggle('editing');
+                editButton.textContent = cardBody.classList.contains('editing') ? 'Save' : 'Edit';
+            });
+        }
+        
+        const viewsContent = {
+        overview: `
+            <div class="card">
+                <div class="card-header">
+                    <h2>Overview</h2>
+                </div>
+                <div class="card-body">
+                   <div class="overview-grid">
+    <div class="overview-item">
+        <h3>Patient</h3>
+        <p>
+            <strong>Name:</strong>
+            <span class="view-text">Tanvi</span>
+            <input type="text" value="Tanvi" class="editable-input" />
+        </p>
+        <p>
+            <strong>Email:</strong>
+            <span class="view-text">Tanvi.tan@gmail.com</span>
+            <input type="text" value="Tanvi.tan@gmail.com" class="editable-input" />
+        </p>
+        <p>
+            <strong>DOB:</strong>
+            <span class="view-text">Mar 15, 1990</span>
+            <input type="date" value="1990-03-15" class="editable-input" />
+        </p>
+    </div>
+    <div class="overview-item">
+        <h3>Contact</h3>
+        <p>
+            <strong>Phone:</strong>
+            <span class="view-text">(555) 123-4567</span>
+            <input type="text" value="(555) 123-4567" class="editable-input" />
+        </p>
+        <p>
+            <strong>Address:</strong>
+            <span class="view-text">123 Medical Way</span>
+            <input type="text" value="123 Medical Way" class="editable-input" />
+        </p>
+        <p>
+            <strong>City:</strong>
+            <span class="view-text">Springfield</span>
+            <input type="text" value="Springfield" class="editable-input" />
+        </p>
+        <p>
+            <strong>ZIP:</strong>
+            <span class="view-text">12345</span>
+            <input type="text" value="12345" class="editable-input" />
+        </p>
+    </div>
+    <div class="overview-item">
+        <h3>Medical</h3>
+        <p>
+            <strong>Blood Type:</strong>
+            <span class="view-text">A+</span>
+            <input type="text" value="A+" class="editable-input" />
+        </p>
+        <p>
+            <strong>Allergies:</strong>
+            <span class="view-text">None</span>
+            <input type="text" value="None" class="editable-input" />
+        </p>
+        <p>
+            <strong>Registered:</strong>
+            <span class="view-text">Jan 10, 2024</span>
+            <input type="date" value="2024-01-10" class="editable-input" />
+        </p>
+    </div>
+</div>
+
+
+                    
+                    <button class="edit-btn" id="editButton">Edit</button>
+                </div>
+            </div>
+        `,
+        history: `
+            <div class="card">
+                <div class="card-header">
+                    <h2>History</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Visit on Jan 10, 2024 - General Checkup</li>
+                        <li>Visit on Feb 15, 2024 - Lab Tests</li>
+                        <li>Visit on Mar 05, 2024 - Consultation</li>
+                    </ul>
+                </div>
+            </div>
+        `,
+        reports: `
+            <div class="card">
+                <div class="card-header">
+                    <h2>Reports</h2>
+                </div>
+                <div class="card-body">
+                    <p>No reports available yet. Please check back later.</p>
+                </div>
+            </div>
+        `,
+        prescriptions: `
+            <div class="card">
+                <div class="card-header">
+                    <h2>Prescriptions</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Amoxicillin 500mg - Twice daily</li>
+                        <li>Vitamin D Supplements - Once daily</li>
+                    </ul>
+                </div>
+            </div>
+        `,
+        payments: `
+            <div class="card">
+                <div class="card-header">
+                    <h2>Payments</h2>
+                </div>
+                <div class="card-body">
+                    <p>Last payment: $150 on Dec 1, 2024</p>
+                </div>
+            </div>
+        `,
+        appointments: `
+            <div class="card">
+                <div class="card-header">
+                    <h2>Appointments</h2>
+                </div>
+                <div class="card-body">
+                    <p>Upcoming appointment: Jan 5, 2025, 10:00 AM</p>
+                </div>
+            </div>
+        `
+    };
+    </script>
+</body>
+</html>

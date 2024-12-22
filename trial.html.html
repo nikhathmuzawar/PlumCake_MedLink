@@ -20,6 +20,8 @@
             cursor: pointer;
         }
     </style>
+    
+  
 </head>
 <body>
     <div class="dashboard">
@@ -158,10 +160,12 @@
             </div>
         </div>
     </div>
-
+    
     <div class="theme-toggle">
-        <button id="themeToggle">🌙</button>
-      </div>   
+      <button id="themeToggle">🌙</button>
+    </div>
+    
+   
 
     <script>
       
@@ -268,15 +272,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `,
-        payments: `
+        prescriptions: `
             <div class="card">
                 <div class="card-header">
-                    <h2>Payments</h2>
+                    <h2>Prescriptions</h2>
                 </div>
                 <div class="card-body">
-                    <p>Last payment: $150 on Dec 1, 2024</p>
+                    <ul>
+                        <li>Amoxicillin 500mg - Twice daily</li>
+                        <li>Vitamin D Supplements - Once daily</li>
+                    </ul>
                 </div>
             </div>
+        `,
+        payments: `
+             <div class="card">
+        <div class="card-header">
+            <h2>Payments</h2>
+        </div>
+        <div class="card-body">
+            <p>Last payment: $150 on Dec 1, 2024</p>
+            <button class="payment-btn" onclick="redirectToPayments()">Payment</button>
+        </div>
+    </div>
         `,
         appointments: `
             <div class="card">
@@ -347,10 +365,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize the default view (Overview)
-    if (contentArea) {
-        contentArea.innerHTML = viewsContent.overview;
-        initializeOverviewEdit();
-    }
+   // if (contentArea) {
+   //     contentArea.innerHTML = viewsContent.overview;
+     //   initializeOverviewEdit();
+    //}
 });
 
     // Function to initialize "Edit" button functionality for Overview
@@ -367,8 +385,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize the default view (Overview)
-    contentArea.innerHTML = viewsContent.overview;
-    initializeOverviewEdit();
+    //contentArea.innerHTML = viewsContent.overview;
+    //initializeOverviewEdit();
 
     // Toggle Sidebar
     const menuToggle = document.getElementById('menuToggle');
@@ -496,9 +514,7 @@ const themeToggle = document.getElementById('themeToggle');
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
     document.body.setAttribute('data-theme', savedTheme);
-    document.querySelector('.sidebar').setAttribute('data-theme', savedTheme);
-    document.querySelector('.header').setAttribute('data-theme', savedTheme);
-    themeToggle.textContent = savedTheme === 'dark' ? '\u2600\ufe0f' : '\ud83c\udf19';
+    themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 }
 
 // Toggle the theme on button click
@@ -508,10 +524,16 @@ themeToggle.addEventListener('click', () => {
 
     // Update the theme and save it to localStorage
     document.body.setAttribute('data-theme', newTheme);
-    document.querySelector('.sidebar').setAttribute('data-theme', newTheme);
-    document.querySelector('.header').setAttribute('data-theme', newTheme);
-    themeToggle.textContent = newTheme === 'dark' ? '\u2600\ufe0f' : '\ud83c\udf19';
+    themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
     localStorage.setItem('theme', newTheme);
+});
+
+// Ensure button placement respects fixed positioning
+window.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.querySelector('.theme-toggle');
+    if (!toggleButton) {
+        console.warn('Theme toggle button not found. Please check the HTML structure.');
+    }
 });
 
 </script>
